@@ -38,13 +38,13 @@ The following are additional optional parameters
 | password | CamelDockerPassword | Password to authenticate with | |
 | email | CamelDockerEmail | Email address associated with the user | |
 | secure | CamelDockerSecure | Use HTTPS communication | false |
-| requestTimeout | CamelDockerRequestTimeout | Request timeout for response (in seconds) | 30 |## Connectivity Options
+| requestTimeout | CamelDockerRequestTimeout | Request timeout for response (in seconds) | 30 |
 
 
 ## Consumer Operations
 
 | Operation | Options | Description  | Produces |
-| ------------- | ---------------- |
+| ------------- | ---------------- | ------------- | ---------------- |
 |events| initialRange | Monitor Docker events (Streaming) | Event |
 
 ## Producer Operations
@@ -53,7 +53,7 @@ The following producer operations are available
 
 ### Misc
 | Operation | Options | Description  | Returns |
-| ------------- | ---------------- |
+| ------------- | ---------------- | ------------- | ---------------- |
 | auth | | Check auth configuration | |
 | info | | System wide information | Info |
 | ping | | Ping the Docker server | | 
@@ -63,7 +63,7 @@ The following producer operations are available
 ### Images
 
 | Operation | Options | Description | Body Content | Returns |
-| ------------- | ---------------- |
+| ------------- | ---------------- | ------------- | ---------------- | ---------------- |
 | image/list | filter, showAll | List images | | List&lt;Image&gt; |
 | image/create | **repository** | Create an image | InputStream |CreateImageResponse |
 | image/build | noCache, quiet, remove, tag | Build an image from Dockerfile via stdin | InputStream or File | InputStream |
@@ -77,7 +77,7 @@ The following producer operations are available
 ### Containers
 
 | Operation | Options | Description  | Body Content |
-| ------------- | ---------------- |
+| ------------- | ---------------- | ------------- | ---------------- |
 | container/list | showSize, showAll, before, since, limit, List containers | initialRange | List&lt;Container&gt; |
 | container/create | **imageId**, name, exposedPorts, workingDir, disableNetwork, hostname, user, tty, stdInOpen, stdInOnce, memoryLimit, memorySwap, cpuShares, attachStdIn, attachStdOut, attachStdErr, env, cmd, dns, image, volumes, volumesFrom | Create a container | CreateContainerResponse |
 | container/start | **containerId**, binds, links, lxcConf, portBindings, privileged, publishAllPorts, dns, dnsSearch, volumesFrom, networkMode, devices, restartPolicy, capAdd, capDrop | Start a container | | 
@@ -97,8 +97,12 @@ The following producer operations are available
 | container/remove | **containerId**, force, removeVolumes | Remove a container | |
 
 
-## Example
+## Examples
 
+The following example consumes events from Docker 
 
     docker://events?host=192.168.59.103&port=2375
 
+The following example queries Docker for system wide information
+
+    docker://info?host=192.168.59.103&port=2375
